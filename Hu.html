@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUI Kustom</title>
+    <style>
+        /* --- TEMA GLOBAL --- */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212; /* Hitam gelap */
+            color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s;
+        }
+
+        /* --- TAMPILAN KOTAK UTAMA (GUI) --- */
+        .gui-container {
+            width: 350px;
+            background: #1e1e1e; /* Hitam terang */
+            border: 2px solid #ff0077; /* Border Merah-Ungu */
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 0, 119, 0.5), 0 0 10px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            box-sizing: border-box;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .gui-header {
+            text-align: center;
+            color: #ff0077;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #6a00ff;
+        }
+
+        .gui-header h2 {
+            margin: 0;
+            font-size: 1.8em;
+            letter-spacing: 1px;
+        }
+
+        /* --- 1. GAYA HALAMAN LOGIN --- */
+        #login-screen {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        #login-screen h2 {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+            background-color: #383838; /* Warna input gelap */
+            color: #f1f1f1;
+        }
+
+        .login-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: -5px;
+            margin-bottom: 30px;
+            font-size: 0.85em;
+        }
+
+        .login-links a {
+            color: #ff0077; /* Merah-Ungu untuk link */
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .login-links a:hover {
+            color: #6a00ff;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: #ff0077; /* Tombol Merah-Ungu */
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .login-button:hover {
+            background-color: #6a00ff;
+            transform: scale(1.02);
+        }
+        
+        /* --- 2. GAYA HALAMAN MENU FITUR (SAMA SEPERTI SEBELUMNYA) --- */
+        #menu-screen {
+            display: none; /* Sembunyikan secara default */
+        }
+        
+        .feature-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 10px;
+            margin-bottom: 10px;
+            background-color: #2a2a2a;
+            border-left: 5px solid #ff0077;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-left-color 0.2s;
+        }
+
+        .feature-option:hover {
+            background-color: #333333;
+            border-left-color: #6a00ff;
+        }
+
+        .feature-label {
+            font-size: 1.1em;
+            color: #e0e0e0;
+        }
+
+        .checkmark {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #555;
+            border-radius: 4px;
+            background-color: #333;
+            position: relative;
+            transition: all 0.2s;
+        }
+        
+        .feature-option input[type="checkbox"] {
+            display: none; /* Sembunyikan checkbox asli */
+        }
+
+        .feature-option input[type="checkbox"]:checked + .checkmark {
+            background-color: #ff0077;
+            border-color: #ff0077;
+        }
+
+        .feature-option input[type="checkbox"]:checked + .checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="gui-container" id="main-gui">
+    
+    <div id="login-screen">
+        <h2>LOGIN</h2>
+        <div class="input-group">
+            <input type="text" placeholder="username" id="usn">
+            <input type="password" placeholder="password" id="pass">
+        </div>
+        
+        <div class="login-links">
+            <a href="#">Lupa Password?</a>
+            <a href="#">Buat Akun</a>
+        </div>
+        
+        <button class="login-button" onclick="showMenu()">LOGIN</button>
+    </div>
+
+    <div id="menu-screen">
+        <div class="gui-header">
+            <h2>Cheat Free Fire DAMAR HUB</h2>
+        </div>
+
+        <label class="feature-option">
+            <span class="feature-label">Sensitivitas Tinggi (Headshot)</span>
+            <input type="checkbox" id="feature1">
+            <span class="checkmark"></span>
+        </label>
+
+        <label class="feature-option">
+            <span class="feature-label">Target Bantuan Jarak Dekat</span>
+            <input type="checkbox" id="feature2">
+            <span class="checkmark"></span>
+        </label>
+
+        <label class="feature-option">
+            <span class="feature-label">Optimasi Waktu Reload</span>
+            <input type="checkbox" id="feature3">
+            <span class="checkmark"></span>
+        </label>
+
+        <label class="feature-option">
+            <span class="feature-label">Tampilan Info Amunisi</span>
+            <input type="checkbox" id="feature4">
+            <span class="checkmark"></span>
+        </label>
+        
+        <label class="feature-option">
+            <span class="feature-label">Akurasi SG Jarak Jauh</span>
+            <input type="checkbox" id="feature5">
+            <span class="checkmark"></span>
+        </label>
+
+        <label class="feature-option">
+            <span class="feature-label">Visualisasi Semua Skin</span>
+            <input type="checkbox" id="feature6">
+            <span class="checkmark"></span>
+        </label>
+
+        <label class="feature-option">
+            <span class="feature-label">Tampilan Statistik Senjata Lengkap</span>
+            <input type="checkbox" id="feature7">
+            <span class="checkmark"></span>
+        </label>
+
+    </div>
+    
+</div>
+
+<script>
+    function showMenu() {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('menu-screen').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
